@@ -38,13 +38,17 @@ class Review(db.Model):
     user = db.relationship('User', back_populates='reviews')
     
     def to_dict(self):
-        return {
+        result = {
             'id': self.id,
             'review_text': self.review_text,
             'rating': self.rating,
-            'created_at': self.created_at.isoformat(),
             'user_id': self.user_id,
         }
+
+        if self.created_at:
+            result['created_at'] = self.created_at.isoformat()
+
+        return result  
     
 class Product(db.Model):
     __tablename__ = 'products'
@@ -58,16 +62,23 @@ class Product(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     
     def to_dict(self):
-        return {
+        result =  {
             'id': self.id,
             'name': self.name,
             'price': self.price,
             'image': self.image,
             'description': self.description,
-            'is_in_stock': self.is_in_stock,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }
+        
+        if self.created_at:
+            result['created_at'] = self.created_at.isoformat()
+
+        if self.updated_at:
+            result['updated_at'] = self.updated_at.isoformat()
+
+        return result
         
 class HairService(db.Model):
     __tablename__ = 'hair_services'
@@ -144,7 +155,7 @@ class Appointment(db.Model):
         return {
             'id': self.id,
             'date': self.date.isoformat(),
-            'time': self.time,
+            'time': self.time.strftime('%H:%M'),
             'service': self.service,
             'extra_information': self.extra_information,
             'user_id': self.user_id,

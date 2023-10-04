@@ -52,8 +52,8 @@ with app.app_context():
 
     db.session.add_all([user1, user2])
     
-    review1 = Review(review_text='They are awesome!', user=user1)
-    review2 = Review(review_text='The best beauty products i have ever seen!', user=user2)
+    review1 = Review(review_text='They are awesome!', user=user1, rating=4.5)
+    review2 = Review(review_text='The best beauty products i have ever seen!', user=user2, rating=5)
         
     hair_service1 = HairService(title='Haircut', description='Standard haircut', price=25.0)
     hair_service2 = HairService(title='Hair Color', description='Full hair coloring', price=60.0)

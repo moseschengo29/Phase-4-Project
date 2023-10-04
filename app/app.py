@@ -2,6 +2,7 @@
 from flask import Flask, make_response, jsonify, request, session
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
+from datetime import datetime
 
 from models import db, User, Product, Review
 
@@ -17,25 +18,58 @@ db.init_app(app)
 
 api = Api(app)
 
-
-
-
 class Login(Resource):
-    def get(self):
-        return f'Welcome to the LOGIN route'
+    def post(self):
+        username = request.get_json().get('username')
+        password = request.get_json().get('password')
+        user = User.query.filter((User.username == username) & (User.password == password)).first()
+        
+        if user:
+            session['user_id'] = user.id
+            return make_response(jsonify(user.to_dict()), 201)
+        else:
+            return {'error': 'user does not exist'}
 
 api.add_resource(Login,'/login')
 
 class Logout(Resource):
-    def get(self):
-        return f'Welcome to the LOGOUT route'
+    def delete(self):
+        session['user_id'] = None
+        return {} , 204
 
 api.add_resource(Logout,'/logout')
 
 class Sign_Up(Resource):
-    def get(self):
-        return f'Welcome to the SIGN_UP route'
+    def post(self):
+        data = request.get_json()
+        
+        username = data['username']
+        password = data['password']
+        email = data['email']
+        
+        user = User.query.filter(User.email == email).first()
+        
+        if user:
+            return {'message': 'User already exists'}
+        else:
+            new_user = User(username=username, password=password, email=email)
+            db.session.add(new_user)
+            db.session.commit()
+            
+            session['user_id'] = new_user.id
+            return make_response(jsonify(new_user.to_dict()), 201)
+
+        
 api.add_resource(Sign_Up,'/signup')
+class CheckSession(Resource):
+    def get(self):
+        user = User.query.filter(User.id == session.get('user_id')).first()
+        if user:
+            return jsonify(user.to_dict())
+        else:
+            return jsonify({'message': '401: Not Authorized'}), 401
+
+api.add_resource(CheckSession, '/check_session')
 
 
 class Reviews(Resource):
@@ -46,9 +80,20 @@ class Reviews(Resource):
         return make_response(jsonify(serialized_reviews), 200)
     
     def post(self):
+        if not session['user_id']:
+            return {'error': 'Unauthorized'}, 401
+        
         data = request.get_json()
         
         review_text = data['review_text']
+        rating = data['rating']
+        
+        review = Review(review_text=review_text, rating=rating, created_at=datetime.utcnow(),user_id=session['user_id'])
+        db.session.add(review)
+        db.session.commit()
+        
+        return make_response(jsonify(review.to_dict()), 201)
+ 
     
 api.add_resource(Reviews,'/reviews')
 
