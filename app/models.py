@@ -29,20 +29,11 @@ class Product(db.Model, SerializerMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    image=db.Column(db.String)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String, nullable=False)
     is_in_stock = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-        
     users = db.relationship('User', secondary=user_product_association, backref='products')
 
-class Order(db.Model, SerializerMixin):
-    __tablename__ = 'orders'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    made_at = db.Column(db.DateTime, server_default=db.func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    
-    user = db.relationship('User', backref='orders')
-    products = db.relationship('Product', secondary=user_product_association, backref='orders')
