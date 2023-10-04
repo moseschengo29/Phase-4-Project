@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #555;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  background-color: #faf3f2;
+}
+
+.logo {
+  font-weight: 300;
+  letter-spacing: 0.5rem;
+  color: #777;
+}
+
+.tag {
+  color: #a40e4c;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.8rem;
+  gap: 3rem;
+}
+
+.navbar li {
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.navbar li:hover {
+  color: #888;
+}
+
+.active {
+  border-bottom: solid 3px #a40e4c;
+}
+
+.nav_btn {
+  padding: 1rem 2rem;
+  border-radius: 24px;
+}
+
+.signup_btn {
+  background-color: white;
+}
+
+.login_btn {
+  background-color: #a40e4c;
+  color: white;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cart_qt {
+  font-size: 15px;
+}
