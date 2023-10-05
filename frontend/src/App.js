@@ -9,6 +9,8 @@ import Makeup from "./pages/Makeup";
 import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import NailBar from "./pages/NailBar";
+import Appointment from "./pages/Appointment";
+import Footer from "./ui/Footer";
 
 function App() {
   return (
@@ -25,7 +27,9 @@ function App() {
         <Route path="/make_up" element={<Makeup />} />
         <Route path="/nail_bar" element={<NailBar />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/book_appointment" element={<Appointment />} />
       </Routes>
+      <Footer />
     </>
   );
 }
