@@ -41,13 +41,16 @@ with app.app_context():
     user1 = User(
         username='Moses Chengo',
         email='moses@example.com',
-        password='password123'
+        password='password123',
+        phone_number = '0799863031'
     )
 
     user2 = User(
         username='Jane Smith',
         email='jane@example.com',
-        password='secret'
+        password='secret',
+        phone_number = '0790902345'
+        
     )
 
     db.session.add_all([user1, user2])

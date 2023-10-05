@@ -46,13 +46,14 @@ class Sign_Up(Resource):
         username = data['username']
         password = data['password']
         email = data['email']
+        phone_number = data['phone_number']
         
         user = User.query.filter(User.email == email).first()
         
         if user:
             return {'message': 'User already exists'}
         else:
-            new_user = User(username=username, password=password, email=email)
+            new_user = User(username=username, password=password, email=email, phone_number=phone_number)
             db.session.add(new_user)
             db.session.commit()
             
@@ -67,7 +68,7 @@ class CheckSession(Resource):
         if user:
             return jsonify(user.to_dict())
         else:
-            return jsonify({'message': '401: Not Authorized'}), 401
+            return {'message': '401: Not Authorized'}
 
 api.add_resource(CheckSession, '/check_session')
 

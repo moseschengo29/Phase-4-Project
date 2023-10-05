@@ -84,7 +84,7 @@ a {
 
 a:-webkit-any-link {
   text-decoration: none;
-  color: inherit;
+  /* color: inherit; */
 }
 
 .cart_qt {
@@ -311,4 +311,64 @@ a:-webkit-any-link {
   gap: 10px;
   font-size: 1.6rem;
   color: blue;
+}
+
+.card {
+  padding: 3rem;
+  background-color: #f7f6f6;
+
+  max-width: 600px;
+  min-height: 600px;
+  margin: 3rem auto;
+}
+
+.card-header {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.card-body {
+  padding: 2rem;
+  font-size: 1.6rem;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.error {
+  color: red;
+  font-size: 1.4rem;
+}
+
+.input_fields {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-control {
+  border: none;
+  width: 300px;
+  padding: 1rem;
+}
+
+.form_message {
+  font-size: 1.8rem;
+}
+
+.login_link {
+  color: rgba(0, 153, 255, 0.849);
+}
+
+.btn {
+  padding: 1rem 2rem;
+  background-color: #a40e4c;
+  color: white;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
 }

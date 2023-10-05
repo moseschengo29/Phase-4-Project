@@ -1,11 +1,12 @@
 import Logo from "./Logo";
 import { NavLink, Link } from "react-router-dom";
-import { HiShoppingCart } from "react-icons/hi";
-import { useState } from "react";
 
-function Navbar() {
-  const [user, setUser] = useState(false);
-
+function Navbar({ user, onLogout }) {
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(() => onLogout());
+  }
   return (
     <div className="header">
       <Logo />
@@ -28,15 +29,28 @@ function Navbar() {
         <li>
           <NavLink to="/contact">Contact</NavLink>
         </li>
-        <li>
-          <NavLink to="/products">Products</NavLink>
-        </li>
-        <li className="nav_btn login_btn">
-          <Link to="/login">Login</Link>
-        </li>
-        <li className="nav_btn signup_btn">
-          <Link to="/signup">Sign Up</Link>
-        </li>
+        {user && <li>Hello, {user?.username?.split(" ")[0]}</li>}
+        {user && (
+          <>
+            <Link to="/book_appointment">
+              <li className="nav_btn login_btn">Book Now</li>
+            </Link>
+            <li className="nav_btn login_btn" onClick={handleLogout}>
+              Logout
+            </li>
+          </>
+        )}
+        {!user && (
+          <>
+            {" "}
+            <li className="nav_btn login_btn">
+              <Link to="/login">Login</Link>
+            </li>
+            <li className="nav_btn signup_btn">
+              <Link to="/signup">Sign Up</Link>
+            </li>{" "}
+          </>
+        )}
       </ul>
     </div>
   );
