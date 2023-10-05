@@ -9,6 +9,8 @@ class User(db.Model):
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
+    phone_number = db.Column(db.Integer)
+
     
     reviews = db.relationship('Review', back_populates='user')
     appointments = db.relationship('Appointment', back_populates='user')
@@ -18,6 +20,7 @@ class User(db.Model):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'phone_number': self.phone_number,
             'appointments': [appointment.to_dict() for appointment in self.appointments],
             'reviews': [review.to_dict() for review in self.reviews],
         }
