@@ -23,7 +23,8 @@ function Footer() {
         One of the best Beauty parlour in the city. Solution for all skin
         problems.
       </div>
-      <div className="links">
+
+      <div className="footer-links">
         <Link to="/home">Home</Link>
         <Link to="/hair_studion">Hair Studio</Link>
         <Link to="/nail_bar">Nail Bar</Link>

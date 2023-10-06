@@ -11,9 +11,9 @@ function Navbar({ user, onLogout }) {
     <div className="header">
       <Logo />
       <ul className="navbar">
-        <li>
+        {/* <li>
           <NavLink to="/">Home</NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/hair_studio">Hair Studio</NavLink>
         </li>
@@ -29,18 +29,23 @@ function Navbar({ user, onLogout }) {
         <li>
           <NavLink to="/contact">Contact</NavLink>
         </li>
-        {user && <li>Hello, {user?.username?.split(" ")[0]}</li>}
-        {user && (
+
+        {user?.username && <Link to="/my_appointments">My Appointments</Link>}
+
+        {user?.username && (
           <>
             <Link to="/book_appointment">
-              <li className="nav_btn login_btn">Book Now</li>
+              <li className="nav_btn login_btn">Book</li>
             </Link>
             <li className="nav_btn login_btn" onClick={handleLogout}>
               Logout
             </li>
           </>
         )}
-        {!user && (
+        {user?.username && (
+          <li className="name">Hello, {user?.username?.split(" ")[0]}</li>
+        )}
+        {!user?.username && (
           <>
             {" "}
             <li className="nav_btn login_btn">

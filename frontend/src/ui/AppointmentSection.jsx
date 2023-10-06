@@ -1,9 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import image from "../assets/woman.jpg";
 
-function AppointmentSection() {
+function AppointmentSection({ user }) {
+  const navigate = useNavigate();
+  function handleBook() {
+    if (!user) {
+      navigate("/login");
+    } else {
+      navigate("/book_appointment");
+    }
+  }
   return (
-    <div className="appointment">
+    <div className="home_appointment">
       <div className="appointment_left">
         <img className="appointment_img" src={image} alt="Appointment" />
       </div>
@@ -15,9 +23,9 @@ function AppointmentSection() {
           experience. You’ll leave feeling pretty on the outside and, more
           importantly, beautiful on the inside. Go from a 9 to a 10!
         </p>
-        <Link to="/book_appointment">
-          <button className="booknow">Book now &rarr;</button>
-        </Link>
+        <button onClick={handleBook} className="booknow">
+          Book now &rarr;
+        </button>
       </div>
     </div>
   );
