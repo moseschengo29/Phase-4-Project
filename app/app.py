@@ -2,9 +2,9 @@
 from flask import Flask, make_response, jsonify, request, session
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
-from datetime import datetime
+from datetime import datetime, time as python_time
 
-from models import db, User, Product, Review
+from models import db, User, Product, Review, HairService, MakeupService, NailService, Appointment
 
 app = Flask(__name__)
 app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
@@ -81,8 +81,8 @@ class Reviews(Resource):
         return make_response(jsonify(serialized_reviews), 200)
     
     def post(self):
-        if not session['user_id']:
-            return {'error': 'Unauthorized'}, 401
+        if 'user_id' not in session or not session['user_id']:
+            return {'error': 'You have to be signed it to add a review'}, 401
         
         data = request.get_json()
         
@@ -105,7 +105,34 @@ class Products(Resource):
         serialized_products = [product.to_dict() for product in products]
         return make_response(jsonify(serialized_products), 200)
     
-api.add_resource(Products, '/products')    
+api.add_resource(Products, '/products')   
+
+class NailResource(Resource):
+    def get(self):
+        services = NailService.query.all()
+        
+        serialized_services = [product.to_dict() for product in services]
+        return make_response(jsonify(serialized_services), 200)
+    
+api.add_resource(NailResource, '/nails_services')     
+
+class HairResource(Resource):
+    def get(self):
+        services = HairService.query.all()
+        
+        serialized_services = [product.to_dict() for product in services]
+        return make_response(jsonify(serialized_services), 200)
+    
+api.add_resource(HairResource, '/hair_services')    
+
+class MakeupResource(Resource):
+    def get(self):
+        services = MakeupService.query.all()
+        
+        serialized_services = [product.to_dict() for product in services]
+        return make_response(jsonify(serialized_services), 200)
+    
+api.add_resource(MakeupResource, '/makeup_services')    
 
 class ProductById(Resource):
     def get(self, id):
@@ -118,6 +145,45 @@ class ProductById(Resource):
 
 api.add_resource(ProductById,'/products/<int:id>')
 
+
+class Appointments(Resource):
+    def get(self):
+        appointments = Appointment.query.all()
+        
+        serialized_appointments = [appintment.to_dict() for appintment in appointments]
+        return make_response(jsonify(serialized_appointments), 200)
+    
+    def post(self):
+        if 'user_id' not in session or not session['user_id']:
+            return {'error': 'You have to be signed it to schedule an appointment'}, 401
+        
+        data = request.get_json()
+        
+        date = datetime.strptime(data['date'], '%Y-%m-%d').date()
+        
+        time_parts = data['time'].split(':')
+        time = python_time(int(time_parts[0]), int(time_parts[1]))
+        extra_information = data['extra_information']
+        service = data['service']
+        
+        appointment = Appointment(date=date, time=time, extra_information=extra_information,service=service, user_id=session['user_id'])
+        db.session.add(appointment)
+        db.session.commit()
+        
+        return make_response(jsonify(appointment.to_dict()), 201)
+
+api.add_resource(Appointments, '/appointments')
+
+class MyAppointments(Resource):
+    def get(self, id):
+        user = User.query.get(id)
+        
+        user_serialized = user.to_dict()
+        
+        if user:
+            return jsonify(user_serialized)
+        
+api.add_resource(MyAppointments, '/my_appointments/<int:id>')        
 
 
 if __name__ == '__main__':

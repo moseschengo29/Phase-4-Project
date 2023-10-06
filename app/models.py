@@ -98,6 +98,7 @@ class HairService(db.Model):
             'title': self.title,
             'description': self.description,
             'image': self.image,
+            'price': self.price
             
         }
         
@@ -116,6 +117,8 @@ class NailService(db.Model):
             'title': self.title,
             'description': self.description,
             'image': self.image,
+            'price': self.price
+            
             
         }
 
@@ -134,7 +137,7 @@ class MakeupService(db.Model):
             'title': self.title,
             'description': self.description,
             'image': self.image,
-            
+            'price': self.price
         }                
 
 class Appointment(db.Model):

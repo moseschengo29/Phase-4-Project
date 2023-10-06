@@ -8,7 +8,7 @@ function ServicesSection() {
         <h1 className="sub-heading">WITHIN REACH</h1>
       </div>
 
-      <div className="services">
+      <div className="all_services">
         <div className="service">
           <span>💇‍♀️</span>
           <h1>Hair Studio</h1>

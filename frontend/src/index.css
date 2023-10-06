@@ -126,6 +126,11 @@ a:-webkit-any-link {
   color: white;
 }
 
+.name {
+  font-weight: 700;
+  color: black;
+}
+
 .services_header {
   max-width: 500px;
   margin: 4rem auto;
@@ -149,7 +154,7 @@ a:-webkit-any-link {
   letter-spacing: 0.5rem;
 }
 
-.services {
+.all_services {
   padding: 0 4rem;
 
   display: flex;
@@ -198,7 +203,7 @@ a:-webkit-any-link {
   background-color: #ca2b6d;
 }
 
-.appointment {
+.home_appointment {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background-color: #faf3f2;
@@ -305,7 +310,7 @@ a:-webkit-any-link {
   line-height: 1.5;
 }
 
-.links {
+.footer-links {
   justify-self: flex-end;
   display: flex;
   gap: 10px;
@@ -371,4 +376,351 @@ a:-webkit-any-link {
   border: none;
   font-size: 1.6rem;
   cursor: pointer;
+}
+
+/* Appointment.css */
+
+.appointment-form {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 20px;
+  background-color: #fdfdfc;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.calendar-container {
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  background-color: #a40e4c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #ca2b6d;
+}
+
+.appointment-info {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.time-selector {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.time-button {
+  background-color: #a40e4c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.time-button:hover {
+  background-color: #ca2b6d;
+}
+
+.additional-info-form {
+  margin-top: 20px;
+}
+
+.apph2 {
+  font-size: 2rem;
+  padding: 1rem 0;
+}
+
+.service-name {
+  font-size: 1.8rem;
+}
+
+label {
+  font-size: 16px;
+}
+
+.info-title {
+  margin-top: 20px;
+}
+
+#extra-info {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 150px;
+}
+
+.service-radio {
+  margin-top: 5px;
+}
+
+.react-calendar {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 550px; /* Adjust the width as needed */
+}
+
+/* Style for calendar navigation buttons */
+.react-calendar__navigation button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 18px;
+  color: #007bff;
+  padding: 10px 0;
+}
+
+.react-calendar__navigation button:hover {
+  text-decoration: underline;
+}
+
+.react-calendar__navigation button:disabled {
+  color: #ccc;
+}
+
+.react-calendar__tile {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Style for calendar tile (day) on hover */
+.react-calendar__tile:hover {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__tile--active {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.react-calendar__tile--now {
+  background-color: #fff;
+  font-weight: bold;
+  border: 1px solid #007bff;
+}
+
+.react-calendar__tile--range {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0;
+}
+
+.react-calendar__tile--hover {
+  background-color: #f0f0f0;
+}
+
+.error-card {
+  height: 100vh;
+}
+
+.error-wrap {
+  width: 500px;
+  margin: 3rem auto;
+  background-color: #f7f6f6;
+  padding: 3rem;
+}
+
+.error-message {
+  font-size: 2.8rem;
+  line-height: 1.5;
+}
+
+.erro-btn {
+  margin-top: 3rem;
+  border: none;
+}
+
+.page_banner {
+  height: 500px;
+}
+.page_banner_container::after {
+  height: 500px;
+}
+
+.services {
+  margin-top: 40px;
+}
+.services:nth-child(2) {
+  flex-direction: column-reverse;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  margin: 10px auto;
+  gap: 40px;
+  padding: 40px;
+  background-color: #fff;
+}
+
+.service-card:nth-child(even) {
+  background-color: #faf3f2;
+}
+
+.service-card:nth-child(odd) {
+  flex-direction: row-reverse;
+  background-color: #fff;
+}
+
+.service-image {
+  width: 600px;
+}
+
+.service-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.services-deatils {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.services-title {
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+
+.services-description {
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.services-price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-list {
+  max-width: 800px;
+  margin: 3rem auto;
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #333;
+  padding: 4rem;
+  line-height: 1.6;
+  background-color: #f3f3f3;
+}
+
+.review-title {
+  font-weight: 600;
+}
+
+.btn-addreview {
+  border: none;
+  background-color: #a40e4c;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 20px auto;
+}
+
+.mg-top {
+  margin-top: 20px;
+}
+
+.reviews_btn {
+  border: none;
+  background-color: #a40e4c;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 30px;
+}
+
+.appointment {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  margin: 40px auto;
+  gap: 40px;
+  padding: 40px;
+  background-color: #f7f6f6;
+  font-size: 1.8rem;
+}
+
+.appheading {
+  font-size: 4rem;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 20px;
+}
+.apptitle {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.contact {
+  display: flex;
+  width: 1400px;
+  margin: 30px auto;
+  padding: 40px;
+  gap: 40px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  letter-spacing: 0.2rem;
+}
+
+.contact-title {
+  color: #a40e4c;
+}
+
+.contact-btn {
+  justify-self: flex-end;
+  margin-top: 9rem;
 }

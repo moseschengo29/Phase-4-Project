@@ -1,5 +1,12 @@
-function Contact() {
-  return <div>Contact</div>;
-}
+import React from "react";
+import Map from "../ui/Map";
+import ContactInfo from "../ui/ContactInfo ";
 
-export default Contact;
+export default function Contact() {
+  return (
+    <div className="contact">
+      <ContactInfo />
+      <Map />
+    </div>
+  );
+}
